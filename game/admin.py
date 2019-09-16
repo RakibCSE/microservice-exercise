@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Category, Game
+
+
+admin.site.register(Category)
+
+
+class GameAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'image',)
+
+
+admin.site.register(Game, GameAdmin)
