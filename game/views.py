@@ -1,6 +1,19 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+
+from .models import Category, Game
+from .serializers import CategorySerializer, GameSerializer
 
 
-def home(request):
-    return HttpResponse("Hello, World!")
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class GameList(generics.ListCreateAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+
+class GameDetail(generics.RetrieveAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
